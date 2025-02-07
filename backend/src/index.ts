@@ -1,10 +1,13 @@
 import 'dotenv/config';
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
+import { cors } from 'hono/cors';
 import pg from 'pg'
 
 const app = new Hono();
-const port = 3000;
+const port = 4000;
+
+app.use(cors());
 
 const db = new pg.Client({
   user: process.env.DB_USER,
@@ -20,7 +23,7 @@ app.get('/', (c) => {
   return c.text('Hello Hono!')
 });
 
-app.get("/items", async (c) => {
+app.get("/menu", async (c) => {
   try {
     let data = await db.query("SELECT * FROM resturaunt_items");
     return c.json(data.rows);
@@ -35,4 +38,4 @@ console.log(`Server is running on http://localhost:${port}`)
 serve({
   fetch: app.fetch,
   port
-})
+});
