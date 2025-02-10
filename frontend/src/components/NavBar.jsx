@@ -1,16 +1,24 @@
-import React from 'react';
-import Cart from './Cart';
-import Checkout from './Checkout'
+import React, { useState } from 'react';
+import CartModal from './Cart';
+import CheckoutModal from './Checkout';
 
 function NavBar() {
     // Basic nav bar with title on left and cart on right, should stick to top of page while user scrolls down
+
+    let [cartShown, showCart] = useState(false);
+    let [checkoutShown, showCheckout] = useState(false);
+
     return <nav>
         <div>
-            <img src="" alt="Resturaunt logo" />
+            <img src="./images/Logo.png" alt="Resturaunt logo" />
             <h1>Goobs resturaunt</h1>
         </div>
-        <Cart />
-        <Checkout />
+
+        <button>Cart button</button>
+
+        {cartShown ? <CartModal /> : null}
+
+        {checkoutShown ? <CheckoutModal /> : null}
     </nav>
 }
 
