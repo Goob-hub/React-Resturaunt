@@ -39,7 +39,7 @@ function Menu() {
         return <h1> {`Error: ${error}`}</h1>
       }
 
-    return <section>
+    return <section className="flex-col justify-center items-center mt-6">
         {menu.map((menuItem, index) => {
             let { id, name, price, description, image_path } = menuItem
             return <MenuItem key={index} id={id} name={name} price={price} description={description} image_path={image_path} />
