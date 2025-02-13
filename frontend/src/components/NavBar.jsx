@@ -7,10 +7,10 @@ function NavBar() {
     // Basic nav bar with title on left and cart on right, should stick to top of page while user scrolls down
 
     let [showCart, toggleCart] = useState(false);
-    let [showCheckout, toggleCheckout] = useState(false);
+    let [showCheckout, toggleCheckout] = useState(false); 
 
     function handleCartClick() {
-        // toggleCart(!showCart);
+        toggleCart(!showCart);
         console.log(JSON.parse(Cookie.get('cart')))
     }
 
@@ -23,9 +23,9 @@ function NavBar() {
         </div>
         <button className="justify-self-end" onClick={handleCartClick}>Cart button</button>
 
-        {showCart ? <CartModal /> : null}
+        {showCart ? <CartModal showCart={handleCartClick} /> : null}
 
-        {showCheckout ? <CheckoutModal /> : null}
+        {showCheckout ? <CheckoutModal showCheckout={showCheckout} /> : null}
     </nav>
 }
 
