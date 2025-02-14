@@ -11,7 +11,6 @@ function NavBar() {
 
     function handleCartClick() {
         toggleCart(!showCart);
-        console.log(JSON.parse(Cookie.get('cart')))
     }
 
     return <nav className="max-w-9/10 h-[10vh] flex flex-row justify-between items-center">

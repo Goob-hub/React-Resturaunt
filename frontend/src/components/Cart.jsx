@@ -3,9 +3,6 @@ import CartItem from "./CartItem";
 import Cookies from "js-cookie";
 
 function CartModal(props) {
-
-    let [cart, editCart] = useState(JSON.parse(Cookies.get("cart")) || []);
-
     /* 
 
     The cart should persist even when the user closes the browser, store cart data in users browser
@@ -20,31 +17,36 @@ function CartModal(props) {
     
     */
 
+    let [cart, editCart] = useState(Cookies.get("cart") ? JSON.parse(Cookies.get("cart")) : {items: [], total: 0});
+
     function updateCart(itemName, newAmount) {
-        let newCart = cart.filter(item => {
+        let newTotal = 0;
+        let newCart = cart.items.filter(item => {
             if(item.name === itemName) {
                 item.amount = newAmount;
             }
-
+            
+            newTotal += parseFloat(item.price * item.amount);
+            
             if(item.amount > 0) {
                 return true;
             }
         });
 
-        editCart(newCart);
+        editCart({items: newCart, total: newTotal});
 
-        Cookies.set("cart", JSON.stringify(newCart));
+        Cookies.set("cart", JSON.stringify({items: newCart, total: newTotal}), { expires: 7 });
     }
 
     return <div className="fixed top-0 right-0 h-full w-full bg-black/50 flex flex-row justify-center items-center">
         <section className="flex flex-col items-start justify-between bg-[#F2EFE7] text-black p-5 min-w-[50vw] min-h-[50vh] rounded-md">
             <h1 className="pl-5 p-0 text-left">Your cart</h1>
-            <ul className="pl-5 flex flex-row justify-center items-center w-full">
-                {cart.map((item, id) => {
-                    return <CartItem key={id} updateCart={updateCart} {...item} />
+            <ul className="pl-5 flex flex-col justify-center items-center w-full">
+                {cart.items.length === 0 ? <h1>No items in your cart :(!</h1> : cart.items.map((item, id) => {
+                    return <CartItem key={id} total={cart.total} updateCart={updateCart} {...item} />
                 })}
             </ul>
-            <h3 className="text-right self-end justify-self-end">Total cost</h3>
+            <h3 className="text-right self-end justify-self-end">{cart.total}</h3>
             <div className="flex flex-row items-end justify-end justify-self-end self-end">
                 <button className="text-black bg-transparent p-3 mr-5" onClick={props.showCart}>Close</button>
                 <button className="text-black bg-[#FFB22C] rounded-md p-3" onClick={() => {

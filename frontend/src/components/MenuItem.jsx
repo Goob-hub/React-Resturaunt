@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 function MenuItem(props) {
 
     function addToCart() {
-        if(!Cookies.get('cart')) Cookies.set('cart', JSON.stringify([]), 7);
+        if(!Cookies.get('cart')) Cookies.set('cart', JSON.stringify({items: [], total: 0}), 7);
 
         let cart = JSON.parse(Cookies.get('cart'));
         let cartItem = {...props};
@@ -13,7 +13,7 @@ function MenuItem(props) {
         delete cartItem.image_path;
         cartItem.amount = 1;
 
-        cart.forEach(item => {
+        cart.items.forEach(item => {
             if(item.id === cartItem.id) {
                 hasItem = true;
                 item.amount++;
@@ -21,8 +21,10 @@ function MenuItem(props) {
         });
 
         if(!hasItem) {
-            cart.push(cartItem);
+            cart.items.push(cartItem);
         }
+
+        cart.total += parseFloat(cartItem.price);
 
         Cookies.set('cart', JSON.stringify(cart), { expires: 7 });
     }
