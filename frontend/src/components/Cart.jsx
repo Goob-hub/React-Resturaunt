@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import CartItem from "./CartItem";
-import Cookies from "js-cookie";
 import store from "../../store"
 
 function CartModal(props) {
