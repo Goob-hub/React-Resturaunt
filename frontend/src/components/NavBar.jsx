@@ -18,11 +18,9 @@ function NavBar() {
     return <nav className="pl-5 pr-5 w-full h-[10vh] flex flex-row justify-between items-center fixed top-0 left-0">
         <div className="flex flex-row justify-center items-center">
             <img className="size-[50px] rounded-full border-4 border-[#FFB22C]" src="./images/Logo.jpg" alt="Resturaunt logo" />
-            <div className="@container">
-                <h1 className="text-center resturaunt-title">Goobs</h1>
-            </div>
+            <h1 className="ml-2 tracking-widest text-2xl font-bold text-[#ffc404] text-center resturaunt-title">GOOBS</h1>
         </div>
-        <button className="justify-self-end" onClick={handleCartClick}>Cart ({cart.items.length})</button>
+        <button className="justify-self-end text-2xl text-[#ffc404] tracking-wider" onClick={handleCartClick}>Cart ({cart.items.length})</button>
 
         {showCart ? <CartModal showCart={handleCartClick} /> : null}
 

@@ -41,8 +41,4 @@ nav {
   background: linear-gradient(#29251c, #2c2306);
 }
 
-@media (width < 400px) {
-  .resturaunt-title {
-    display: none;
-  }
-}
+
