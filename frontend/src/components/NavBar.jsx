@@ -8,11 +8,17 @@ function NavBar() {
 
     const state = store();
     const { cart } = state;
+
     let [showCart, toggleCart] = useState(false);
     let [showCheckout, toggleCheckout] = useState(false); 
 
     function handleCartClick() {
         toggleCart(!showCart);
+    }
+
+    function handleCheckoutClick() {
+        toggleCart(false);
+        toggleCheckout(!showCheckout)
     }
 
     return <nav className="pl-5 pr-5 w-full h-[10vh] flex flex-row justify-between items-center fixed top-0 left-0">
@@ -22,9 +28,9 @@ function NavBar() {
         </div>
         <button className="justify-self-end text-2xl text-[#ffc404] tracking-wider" onClick={handleCartClick}>Cart ({cart.items.length})</button>
 
-        {showCart ? <CartModal showCart={handleCartClick} /> : null}
+        {showCart ? <CartModal showCart={handleCartClick} showCheckout={handleCheckoutClick} /> : null}
 
-        {showCheckout ? <CheckoutModal showCheckout={showCheckout} /> : null}
+        {showCheckout ? <CheckoutModal showCheckout={handleCheckoutClick} /> : null}
     </nav>
 }
 

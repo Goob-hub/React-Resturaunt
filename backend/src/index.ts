@@ -33,7 +33,16 @@ app.get("/menu", async (c) => {
   }
 });
 
-console.log(`Server is running on http://localhost:${port}`)
+app.post("/orders", async (c) => {
+  try {
+    const body = await c.req.json();
+    return c.json(body);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+console.log(`Server is running on http://localhost:${port}`);
 
 serve({
   fetch: app.fetch,

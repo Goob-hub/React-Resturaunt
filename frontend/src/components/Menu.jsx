@@ -13,7 +13,7 @@ function Menu() {
 
     */
 
-    let apiUrl = "http://localhost:4000/menu"
+    const apiUrl = "http://localhost:4000/menu"
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

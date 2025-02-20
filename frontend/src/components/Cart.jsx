@@ -31,9 +31,7 @@ function CartModal(props) {
             <h3 className="text-right self-end justify-self-end mt-3 mb-3">${cart.total.toFixed(2)}</h3>
             <div className="flex flex-row items-end justify-end justify-self-end self-end">
                 <button className="text-black bg-transparent p-3 mr-5" onClick={props.showCart}>Close</button>
-                <button className="text-black bg-[#FFB22C] rounded-md p-3" onClick={() => {
-                    console.log("Show checkout");
-                }}>Go To Checkout</button>
+                <button className="text-black bg-[#FFB22C] rounded-md p-3" onClick={props.showCheckout}>Go To Checkout</button>
             </div>
         </section>
     </div>
