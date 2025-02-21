@@ -25,7 +25,7 @@ app.get('/', (c) => {
 
 app.get("/menu", async (c) => {
   try {
-    let data = await db.query("SELECT * FROM resturaunt_items");
+    const data = await db.query("SELECT * FROM resturaunt_items");
     return c.json(data.rows);
   } catch (error) {
     console.error(error);
@@ -35,10 +35,16 @@ app.get("/menu", async (c) => {
 
 app.post("/orders", async (c) => {
   try {
-    const body = await c.req.json();
-    return c.json(body);
+    const {full_name, email, street, postal_code, city, cart} = await c.req.json();
+    try {
+      const res = await db.query("INSERT INTO orders (full_name, email, postal_code, street, city, cart) VALUES ($1, $2, $3, $4, $5, $6)", [full_name, email, street, postal_code, city, cart]);
+      return c.text("Success inserting data into sql database!");
+    } catch (error) {
+      console.log("Error inserting data into database!", error);
+    }
+    return c.text("Success getting order data from frontend!");
   } catch (error) {
-    console.log(error);
+    console.log("Error with hono server :(", error);
   }
 });
 

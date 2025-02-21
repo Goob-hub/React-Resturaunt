@@ -11,9 +11,11 @@ CREATE TABLE resturaunt_items (
 
 CREATE TABLE orders (
 	id SERIAL NOT NULL,
+	cart TEXT NOT NULL,
 	full_name TEXT NOT NULL,
 	email TEXT NOT NULL,
 	postal_code TEXT NOT NULL,
+	street TEXT NOT NULL,
 	city TEXT NOT NULL,
 	PRIMARY KEY(id)
 );

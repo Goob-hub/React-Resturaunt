@@ -12,22 +12,20 @@ function CheckoutModal(props) {
     const apiUrl = "http://localhost:4000/orders";
 
     function handleOrder(formData) {
-        const data = {};
+        const orderData = {cart: JSON.stringify(cart)};
         
         for (const key of formData.keys()) {
-            data[key] = formData.get(key);
+            orderData[key] = formData.get(key);
         }
 
-        console.log(data);
-
-        axios.post(apiUrl, data)
+        axios.post(apiUrl, orderData)
             .then(function (response) {
-            console.log(response.status);
+                console.log(response.status);
             })
             .catch(function (error) {
-            console.error(error.status);
+                console.error(error.status);
             }).finally(function () {
-            props.showCheckout();
+                props.showCheckout();
             });
     }
 
@@ -40,22 +38,22 @@ function CheckoutModal(props) {
 
                 <div className="overflow-y-auto flex flex-col items-start justify-between py-3">
                     <label htmlFor="fullName" className="font-bold">Full Name</label>
-                    <input required defaultValue="balls" className="block rounded-md focus:border-indigo-500 my-2 focus:border-solid focus:border-2 bg-white min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" type="text" name="full_name" id="fullName" placeholder="Your name" />
+                    <input required className="block rounded-md focus:border-indigo-500 my-2 focus:border-solid focus:border-2 bg-white min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" type="text" name="full_name" id="fullName" placeholder="Your name" />
                     
                     <label htmlFor="Email" className="font-bold">E-Mail Adress</label>
-                    <input required defaultValue="balls" className="block rounded-md focus:border-indigo-500 my-2 focus:border-solid focus:border-2 bg-white min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" type="text" name="email" id="Email" placeholder="Your email" />
+                    <input required className="block rounded-md focus:border-indigo-500 my-2 focus:border-solid focus:border-2 bg-white min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" type="text" name="email" id="Email" placeholder="Your email" />
 
                     <label htmlFor="Street" className="font-bold">Street</label>
-                    <input required defaultValue="balls" className="block rounded-md focus:border-indigo-500 my-2 focus:border-solid focus:border-2 bg-white min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" type="text" name="street" id="Street" placeholder="Your street"/>
+                    <input required className="block rounded-md focus:border-indigo-500 my-2 focus:border-solid focus:border-2 bg-white min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" type="text" name="street" id="Street" placeholder="Your street"/>
 
                     <div className="flex flex-row flex-wrap justify-start items-center">
                         <div className="flex flex-col justify-center items-center mr-3">
                             <label className="self-start font-bold" htmlFor="PostalCode">Postal Code</label>
-                            <input required defaultValue="balls" className="block rounded-md focus:border-indigo-500 my-2 focus:border-solid focus:border-2 bg-white min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" type="text" name="postal_code" id="PostalCode" placeholder="Your postal code"/>
+                            <input required className="block rounded-md focus:border-indigo-500 my-2 focus:border-solid focus:border-2 bg-white min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" type="text" name="postal_code" id="PostalCode" placeholder="Your postal code"/>
                         </div>
                         <div className="flex flex-col justify-center items-center">
                             <label className="self-start font-bold" htmlFor="City">City</label>
-                            <input required defaultValue="balls" className="block rounded-md focus:border-indigo-500 my-2 focus:border-solid focus:border-2 bg-white min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" type="text" name="city" id="City" placeholder="Your city"/>
+                            <input required className="block rounded-md focus:border-indigo-500 my-2 focus:border-solid focus:border-2 bg-white min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" type="text" name="city" id="City" placeholder="Your city"/>
                         </div>
                     </div>
 
