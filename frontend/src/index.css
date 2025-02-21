@@ -29,16 +29,17 @@ Lighter grey: #46443c
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  min-width: 100%;
+}
+
 body {
   margin: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
+  min-width: 100%;
 }
 
 nav {
   background: linear-gradient(#29251c, #2c2306);
 }
-
-

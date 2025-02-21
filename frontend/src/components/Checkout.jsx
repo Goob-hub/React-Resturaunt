@@ -3,10 +3,6 @@ import store from "../../store";
 import axios from "axios";
 
 function CheckoutModal(props) {
-    /* 
-    Similar to the cart, use state to pop up the checkout modal if clicked
-    */
-
     const state = store();
     const { cart } = state;
     const apiUrl = "http://localhost:4000/orders";
